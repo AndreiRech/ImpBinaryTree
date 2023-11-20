@@ -304,15 +304,34 @@ class BinarySearchTree {
                 count++;
         }
     }
+
+    public int sumBetween(int start, int end) {
+        int soma = 0;
+        Node current = root;
+
+        while (current.element != start) {
+            if (start < current.element)
+                current = current.left;
+            else
+                current = current.right;
+        }
+
+        while (current.element != end) {
+            if (end < current.element) {
+                current = current.left;
+                if (current.element == end)
+                    break;
+                soma += current.element;
+            }
+            else {
+                current = current.right;
+                    if (current.element == end)
+                        break;
+                soma += current.element;
+            }
+        }
+
+        return soma;
+    }
+
 }
-
-
-    /**
-     * Método sumBetween()
-     * método soma os valores de uma sequência de nodos (não incluindo os valores dos nodos de início e fim)
-     * @param start valor que corresponde ao nodo de início
-     * @param end valor que corresponde ao nodo de fim
-     * @param defina outros caso haja necessidade na sua implementação
-     * @return valor inteiro correspondente a quantidade de nodos folha
-     */
-    // public int countBetween(int start, int end) 
