@@ -4,7 +4,6 @@
  * */
 
 class BinarySearchTree {
-
     private Node root;
 
     public BinarySearchTree() {
@@ -246,11 +245,11 @@ class BinarySearchTree {
     public void treeInfo() {
         System.out.println("Altura da arvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        //if (root != null) {
-            // System.out.println("Valor minimo: " + minNode());
-            // System.out.println("Valor maximo: " + maxNode());
-        // }
-        // System.out.println("Quantidade de folhas: " + leaveNodes(root));
+        if (root != null) {
+            System.out.println("Valor minimo: " + minNode());
+            System.out.println("Valor maximo: " + maxNode());
+        }
+        System.out.println("Quantidade de folhas: " + countLeaves());
     }
 
     public void printTree() {
@@ -263,31 +262,39 @@ class BinarySearchTree {
     }
 
 
-    /**
-     * Método minNode()
-     * método que busca o menor valor existente na árvore
-     * @param defina a necessidade de parâmetros de acordo com a sua implementação
-     * @return valor do menor nodo da árvore
-     */
-    // public int minNode() {}
+    // Atividade 1a - Achar o menor
 
+    public int minNode() {
+        int menor = 0;
+        Node current = root;
+        while (true) {
+            current = current.left;
+            menor = current.element;
 
-    /**
-     * Método maxNode()
-     * método que busca o maior valor existente na árvore
-     * @param defina a necessidade de parâmetros de acordo com a sua implementação
-     * @return valor do maior nodo da árvore
-     */
-    // public int maxNode() {}
+            if (current.left == null)
+                return menor;
+        }
+    }
 
+    // Atividade 1b - Achar o maior
 
-    /**
-     * Método countLeaves()
-     * método que conta os nodos folha de uma árvore binária
-     * @param defina a necessidade de parâmetros de acordo com a sua implementação
-     * @return valor inteiro correspondente a quantidade de nodos folha
-     */
-    //public int countLeaves() {}
+    public int maxNode() {
+        int maior = 0;
+        Node current = root;
+        while (true) {
+            current = current.right;
+            maior = current.element;
+
+            if (current.right == null)
+                return maior;
+        }
+    }
+
+    // Atividade 1c - Contador de folhas
+
+    public int countLeaves() {
+        return 0;
+    }
 
 
     /**
