@@ -5,6 +5,7 @@
 
 class BinarySearchTree {
     private Node root;
+    private int count;
 
     public BinarySearchTree() {
         root = null;
@@ -263,7 +264,6 @@ class BinarySearchTree {
 
 
     // Atividade 1a - Achar o menor
-
     public int minNode() {
         int menor = 0;
         Node current = root;
@@ -277,7 +277,6 @@ class BinarySearchTree {
     }
 
     // Atividade 1b - Achar o maior
-
     public int maxNode() {
         int maior = 0;
         Node current = root;
@@ -291,10 +290,21 @@ class BinarySearchTree {
     }
 
     // Atividade 1c - Contador de folhas
-
     public int countLeaves() {
-        return 0;
+        count = 0;
+        countLeavesAux(root);
+        return count;
     }
+
+    public void countLeavesAux(Node current) {
+        if (current != null) {
+            countLeavesAux(current.left);
+            countLeavesAux(current.right);
+            if(current.right == null && current.left == null)
+                count++;
+        }
+    }
+}
 
 
     /**
@@ -305,6 +315,4 @@ class BinarySearchTree {
      * @param defina outros caso haja necessidade na sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
-    // public int countBetween(int start, int end) {}
-
-}
+    // public int countBetween(int start, int end) 
