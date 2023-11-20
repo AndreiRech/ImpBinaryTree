@@ -1,13 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-
         Scanner scan = new Scanner(System.in);
         BinarySearchTree tree = new BinarySearchTree();
-        int op;
-        int value;
+        int op, value;
 
         do {
             System.out.println("\nÁRVORE BINÁRIA DE PESQUISA");
@@ -56,7 +53,13 @@ public class Main {
                     tree.caminhamentos();
                 }
                 case 7 -> {
-                    // tree.sumBetween();
+                   System.out.println("Informe o valor inicial: ");
+                   int x = scan.nextInt();
+
+                   System.out.println("Informe o valor final: ");
+                   int y = scan.nextInt();
+
+                   System.out.print("Soma total entre " +x +" e " +y +" = " +tree.sumBetween(x,y));
                 }
                 case 8 -> {
                     tree.clearTree();
@@ -64,6 +67,6 @@ public class Main {
 
             }
         } while (op != 0);
-
+        scan.close();
     }
 }
