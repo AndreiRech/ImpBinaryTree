@@ -4,8 +4,8 @@
  * */
 
 class BinarySearchTree {
-
     private Node root;
+    private int count;
 
     public BinarySearchTree() {
         root = null;
@@ -16,7 +16,7 @@ class BinarySearchTree {
         Node prev, current;
 
         // cria um novo nodo
-        Node node = new Node();
+        Node node = new Node(v);
 
         // atribui o valor recebido ao item de dados do nodo
         node.element = v;
@@ -246,11 +246,11 @@ class BinarySearchTree {
     public void treeInfo() {
         System.out.println("Altura da arvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        //if (root != null) {
-            // System.out.println("Valor minimo: " + minNode());
-            // System.out.println("Valor maximo: " + maxNode());
-        // }
-        // System.out.println("Quantidade de folhas: " + leaveNodes(root));
+        if (root != null) {
+            System.out.println("Valor minimo: " + minNode());
+            System.out.println("Valor maximo: " + maxNode());
+        }
+        System.out.println("Quantidade de folhas: " + countLeaves());
     }
 
     public void printTree() {
@@ -263,41 +263,75 @@ class BinarySearchTree {
     }
 
 
-    /**
-     * Método minNode()
-     * método que busca o menor valor existente na árvore
-     * @param defina a necessidade de parâmetros de acordo com a sua implementação
-     * @return valor do menor nodo da árvore
-     */
-    // public int minNode() {}
+    // Atividade 1a - Achar o menor
+    public int minNode() {
+        int menor = 0;
+        Node current = root;
+        while (true) {
+            current = current.left;
+            menor = current.element;
 
+            if (current.left == null)
+                return menor;
+        }
+    }
 
-    /**
-     * Método maxNode()
-     * método que busca o maior valor existente na árvore
-     * @param defina a necessidade de parâmetros de acordo com a sua implementação
-     * @return valor do maior nodo da árvore
-     */
-    // public int maxNode() {}
+    // Atividade 1b - Achar o maior
+    public int maxNode() {
+        int maior = 0;
+        Node current = root;
+        while (true) {
+            current = current.right;
+            maior = current.element;
 
+            if (current.right == null)
+                return maior;
+        }
+    }
 
-    /**
-     * Método countLeaves()
-     * método que conta os nodos folha de uma árvore binária
-     * @param defina a necessidade de parâmetros de acordo com a sua implementação
-     * @return valor inteiro correspondente a quantidade de nodos folha
-     */
-    //public int countLeaves() {}
+    // Atividade 1c - Contador de folhas
+    public int countLeaves() {
+        count = 0;
+        countLeavesAux(root);
+        return count;
+    }
 
+    public void countLeavesAux(Node current) {
+        if (current != null) {
+            countLeavesAux(current.left);
+            countLeavesAux(current.right);
+            if(current.right == null && current.left == null)
+                count++;
+        }
+    }
 
-    /**
-     * Método sumBetween()
-     * método soma os valores de uma sequência de nodos (não incluindo os valores dos nodos de início e fim)
-     * @param start valor que corresponde ao nodo de início
-     * @param end valor que corresponde ao nodo de fim
-     * @param defina outros caso haja necessidade na sua implementação
-     * @return valor inteiro correspondente a quantidade de nodos folha
-     */
-    // public int countBetween(int start, int end) {}
+    public int sumBetween(int start, int end) {
+        int soma = 0;
+        Node current = root;
+
+        while (current.element != start) {
+            if (start < current.element)
+                current = current.left;
+            else
+                current = current.right;
+        }
+
+        while (current.element != end) {
+            if (end < current.element) {
+                current = current.left;
+                if (current.element == end)
+                    break;
+                soma += current.element;
+            }
+            else {
+                current = current.right;
+                    if (current.element == end)
+                        break;
+                soma += current.element;
+            }
+        }
+
+        return soma;
+    }
 
 }
