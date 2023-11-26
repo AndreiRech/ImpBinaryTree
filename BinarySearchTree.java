@@ -16,7 +16,7 @@ class BinarySearchTree {
         Node prev, current;
 
         // cria um novo nodo
-        Node node = new Node();
+        Node node = new Node(v);
 
         // atribui o valor recebido ao item de dados do nodo
         node.element = v;
